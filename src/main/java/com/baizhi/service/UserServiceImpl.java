@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
-    public Map<String, Object> getAll(Integer page, Integer rows, String starId) {
+    public Map<String, Object> show(Integer page, Integer rows, String starId) {
         Map<String, Object> map = new HashMap<>();
         User user = new User();
         user.setStarId(starId);

@@ -16,7 +16,7 @@ public class UserController {
 
     @RequestMapping("show")
     public Map<String,Object> show(Integer page,Integer rows,String starId){
-        Map<String, Object> map = userService.getAll(page,rows,starId);
+        Map<String, Object> map = userService.show(page, rows, starId);
         return map;
     }
 

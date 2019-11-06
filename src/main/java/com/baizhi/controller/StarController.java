@@ -1,6 +1,5 @@
 package com.baizhi.controller;
 
-import com.baizhi.entity.Album;
 import com.baizhi.entity.Star;
 import com.baizhi.service.StarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,7 @@ public class StarController {
     @RequestMapping("show")
     public Map<String,Object> show(Integer page,Integer rows){
 
-        Map<String, Object> map = starService.getAll(page, rows);
+        Map<String, Object> map = starService.show(page, rows);
 
         return map;
     }

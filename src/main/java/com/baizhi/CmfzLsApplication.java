@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.converter.HttpMessageConverter;
+import redis.clients.jedis.Jedis;
 import tk.mybatis.spring.annotation.MapperScan;
 
 @SpringBootApplication
@@ -32,5 +33,9 @@ public class CmfzLsApplication {
         return new HttpMessageConverters(converter);
     }
 
+    @Bean("jedis")
+    public Jedis getJedis() {
+        return new Jedis("192.168.228.140", 6379);//redis服务的机器ip，端口号
+    }
 
 }

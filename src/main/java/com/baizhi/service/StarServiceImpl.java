@@ -1,7 +1,6 @@
 package com.baizhi.service;
 
 import com.baizhi.dao.StarDao;
-import com.baizhi.entity.Album;
 import com.baizhi.entity.Star;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.ibatis.session.RowBounds;
@@ -25,7 +24,7 @@ public class StarServiceImpl implements StarService{
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
-    public Map<String, Object> getAll(Integer page,Integer rows) {
+    public Map<String, Object> show(Integer page, Integer rows) {
         Star star = new Star();
         RowBounds rowBounds = new RowBounds((page-1)*rows, rows);
 

@@ -2,17 +2,15 @@ package com.baizhi.service;
 
 import com.baizhi.dao.BannerDao;
 import com.baizhi.entity.Banner;
-import org.apache.commons.io.FilenameUtils;
+import com.baizhi.redis.RedisCache;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-import sun.misc.IOUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
-import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.*;
 
@@ -34,9 +32,11 @@ public class BannerServiceImpl implements BannerService {
         }
         return id;
     }
+
+    @RedisCache
     @Transactional
     @Override
-    public Map<String, Object> showAll(Integer page, Integer rows) {
+    public Map<String, Object> show(Integer page, Integer rows) {
         //定义返回值
         HashMap<String, Object> map = new HashMap<>();
         RowBounds rowBounds = new RowBounds((page - 1) * rows, rows);
@@ -45,7 +45,7 @@ public class BannerServiceImpl implements BannerService {
         List<Banner> list = bannerDao.selectByRowBounds(banner, rowBounds);
 
         int total = bannerDao.selectCount(banner);                  //查询到的图片总数
-        System.out.println(total);
+
         int totalCount = total%rows==0?total/rows:total/rows+1;     //获取图片的总页数
         map.put("page",page);
         map.put("rows",list);
@@ -72,12 +72,9 @@ public class BannerServiceImpl implements BannerService {
         }
         int i = bannerDao.updateByPrimaryKeySelective(banner);
 
-        System.out.println(i);
-        System.out.println(banner);
 
         String realPath = request.getServletContext().getRealPath("back/image");
-        System.out.println(realPath);
-        System.out.println(filename);
+
         //File file1 = new File(realPath);
         try {
             cover.transferTo(new File(realPath,filename+"."+prefix));
@@ -90,7 +87,7 @@ public class BannerServiceImpl implements BannerService {
     @Override
     public void deleteBanner(Banner banner,HttpServletRequest request) {
         Banner banner1 = bannerDao.selectByPrimaryKey(banner);
-        System.out.println(banner);
+
         int i = bannerDao.deleteByPrimaryKey(banner);
         if(i!=1){
             throw new RuntimeException("删除失败");

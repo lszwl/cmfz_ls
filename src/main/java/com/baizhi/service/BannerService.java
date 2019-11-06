@@ -10,7 +10,7 @@ import java.util.Map;
 public interface BannerService {
     public String addBanner(Banner banner);
 
-    public Map<String,Object> showAll(Integer page,Integer rows);
+    public Map<String, Object> show(Integer page, Integer rows);
 
     void fileUpload(HttpServletRequest request, MultipartFile file,String id) throws IOException;
 

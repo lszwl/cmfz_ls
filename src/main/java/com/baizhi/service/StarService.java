@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface StarService {
-    Map<String,Object> getAll(Integer page,Integer rows);
+    Map<String, Object> show(Integer page, Integer rows);
 
     String  add( Star star);
 

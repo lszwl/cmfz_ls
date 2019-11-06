@@ -3,9 +3,7 @@ package com.baizhi.controller;
 import com.baizhi.entity.Banner;
 import com.baizhi.service.BannerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -45,7 +43,7 @@ public class BannerController {
 
     @RequestMapping("show")
     public Map<String, Object> show(Integer page, Integer rows){
-        Map<String, Object> map = bannerService.showAll(page, rows);
+        Map<String, Object> map = bannerService.show(page, rows);
         return map;
     }
 

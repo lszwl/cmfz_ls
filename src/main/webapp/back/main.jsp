@@ -215,10 +215,10 @@
                 </ol>
                 <!-- 轮播（Carousel）项目 -->
                 <div class="carousel-inner">
-                    <div class="item active">
+                    <div class="item ">
                         <img src="image/121.jpg" alt="First slide">
                     </div>
-                    <div class="item">
+                    <div class="item active">
                         <img src="image/120.jpg" alt="Second slide">
                     </div>
                     <div class="item">
