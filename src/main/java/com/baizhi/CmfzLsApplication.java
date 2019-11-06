@@ -15,6 +15,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 public class CmfzLsApplication {
 
     public static void main(String[] args) {
+        System.out.println(111);
         SpringApplication.run(CmfzLsApplication.class, args);
     }
     @Bean
